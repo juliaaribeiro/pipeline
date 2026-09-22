@@ -2,6 +2,6 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY hello_world.py .
+COPY imprimir.py .
 
 CMD ["python", "imprimir.py"]
