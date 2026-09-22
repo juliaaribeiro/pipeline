@@ -1,4 +1,4 @@
-name: Docker Build
+name: Docker Build and Push
 
 on:
   push:
@@ -14,8 +14,15 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Construir imagem Docker
-        run: docker build -t hello-world-python:latest .
+      - name: Login no Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: juliaribeiro4
+          password: ${dckr_pat_T0FeoQoGvnmHmtVnJO0q5p6llcU}
 
-      - name: Executar container
-        run: docker run --rm hello-world-python:latest
+      - name: Construir e enviar imagem
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: juliaribeiro4/hello-world-python:latest
